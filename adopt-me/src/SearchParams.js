@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 const SearchParams = () => {
-  const location = "Seattle, WA";
+  // this is a hook (introduced in React 16.8)
+  // all hooks beginn with "use"
+  // this is ES6 destructuring; useState always return an array
+  const [location, setLocation] = useState("Seattle, WA");
 
   return (
     <div className="search-params">
+      <h1>{location}</h1>
       <form>
         <label htmlFor="location">
           Location
@@ -13,6 +17,7 @@ const SearchParams = () => {
             id="location"
             value={location}
             placeholder="Location"
+            onChange={e => setLocation(e.target.value)}
           />
         </label>
         <button>Submit</button>
