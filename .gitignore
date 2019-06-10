@@ -1,5 +1,12 @@
 # node modules
-node_modules
+node_modules/
+
+# macOS
+.DS_Store
+
+dist/
+coverage/
+.env
 
 # Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template
