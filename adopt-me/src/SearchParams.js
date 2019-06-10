@@ -3,7 +3,8 @@ import React, { useState } from "react";
 const SearchParams = () => {
   // this is a hook (introduced in React 16.8)
   // all hooks beginn with "use"
-  // this is ES6 destructuring; useState always return an array
+  // hooks never go inside of if statements or for loops because the order of hooks matters and has to be constant
+  // btw: this is ES6 destructuring; useState always return an array
   const [location, setLocation] = useState("Seattle, WA");
 
   return (
