@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import pet, { ANIMALS } from "@frontendmasters/pet";
 import useDropdown from "./useDropdown";
 
+// first, all the consts will be set
+// second, the effect that calls the API will be scheduled after the render
+// third, the rendering happens, so the user will already see stuff which makes for a quick application
+// fourth (or later), the effect that calls the API is being run
 const SearchParams = () => {
   // this is a hook (introduced in React 16.8)
   // all hooks beginn with "use"
@@ -16,6 +20,7 @@ const SearchParams = () => {
   // useEffect is disconnected from when the render is happening
   // it is actually scheduling this function to run *after* the render happens
   // why? because you don't want to slow down the first render
+  // the effect is only scheduled when animal, setBreed or setBreeds change
   useEffect(() => {
     setBreeds([]);
     setBreed("");
