@@ -4,6 +4,7 @@
   "description": "Doing https://frontendmasters.com/courses/complete-react-v5/",
   "main": "index.js",
   "scripts": {
+    "dev": "parcel src/index.html",
     "format": "prettier \"src/**/*.{js,html}\" --write",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,6 +22,7 @@
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
+    "parcel-bundler": "^1.12.3",
     "prettier": "^1.18.2"
   }
 }
