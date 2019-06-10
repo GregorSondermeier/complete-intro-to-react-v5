@@ -1,0 +1,19 @@
+{
+  "name": "adopt-me",
+  "version": "1.0.0",
+  "description": "Doing https://frontendmasters.com/courses/complete-react-v5/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GregorSondermeier/complete-intro-to-react-v5.git"
+  },
+  "author": "Gregor Sondermeier <gregor.sondermeier.github@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GregorSondermeier/complete-intro-to-react-v5/issues"
+  },
+  "homepage": "https://github.com/GregorSondermeier/complete-intro-to-react-v5#readme"
+}
