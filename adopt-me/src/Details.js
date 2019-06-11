@@ -1,5 +1,6 @@
 import React from "react";
 import pet from "@frontendmasters/pet";
+import DebugJson from "./DebugJson";
 
 // on class components, there is one hard requirement: to implement the render() method.
 // also we can't use hooks (i.e. useState()) with class components (yet?),
@@ -36,15 +37,8 @@ class Details extends React.Component {
         <div className="details">
           <h1>loading ...</h1>
 
-          <h3>props</h3>
-          <pre>
-            <code>{JSON.stringify(this.props, null, 2)}</code>
-          </pre>
-
-          <h3>state</h3>
-          <pre>
-            <code>{JSON.stringify(this.state, null, 2)}</code>
-          </pre>
+          <DebugJson title="props" obj={this.props} />
+          <DebugJson title="state" obj={this.state} />
         </div>
       );
     } else {
@@ -59,15 +53,8 @@ class Details extends React.Component {
             <p>{description}</p>
           </div>
 
-          <h3>props</h3>
-          <pre>
-            <code>{JSON.stringify(this.props, null, 2)}</code>
-          </pre>
-
-          <h3>state</h3>
-          <pre>
-            <code>{JSON.stringify(this.state, null, 2)}</code>
-          </pre>
+          <DebugJson title="props" obj={this.props} />
+          <DebugJson title="state" obj={this.state} />
         </div>
       );
     }
