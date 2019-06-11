@@ -16,6 +16,16 @@ class Carousel extends React.Component {
     return { photos };
   }
 
+  // by defined handleIndexClick as an arrow function, no new this context will be generated
+  // rule of thumb:
+  // whenever we are passing functions into children or whenever we do event listeners,
+  // we need to use an arrow function. because that will guarantee the this conext to be correct.
+  handleIndexClick = event => {
+    this.setState({
+      active: +event.target.dataset.index
+    });
+  };
+
   render() {
     const { photos, active } = this.state;
 
