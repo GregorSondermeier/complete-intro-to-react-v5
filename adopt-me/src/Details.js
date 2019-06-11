@@ -6,6 +6,12 @@ import DebugJson from "./DebugJson";
 // also we can't use hooks (i.e. useState()) with class components (yet?),
 // so we need to implement the lifecycle methods instead
 class Details extends React.Component {
+  // experimental feature:
+  // public class properties (proposed for ES2019)
+  state = {
+    loading: true
+  };
+
   constructor(props) {
     super(props);
 

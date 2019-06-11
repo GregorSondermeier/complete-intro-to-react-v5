@@ -4,14 +4,10 @@ import React from "react";
  * debug component to render an object stringified in a <pre>
  */
 class DebugJson extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      title: null,
-      obj: null
-    };
-  }
+  state = {
+    title: null,
+    obj: null
+  };
 
   componentDidMount() {
     this.setState({
