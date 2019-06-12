@@ -6,8 +6,11 @@ class Carousel extends React.Component {
     active: 0
   };
 
-  // this is a special react method that must be static.
-  // it takes in a set of props and gives back a new set of state
+  /**
+   * naming convention: this is one of the react lifecycle methods.
+   * it takes in a set of props and gives back a new set of state.
+   * static, so it gets called on the class, not on the instance.
+   */
   static getDerivedStateFromProps({ media }) {
     const photos = media.length
       ? media.map(({ large }) => large)

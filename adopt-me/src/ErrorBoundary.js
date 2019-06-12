@@ -1,6 +1,6 @@
 // mostly code from reactjs.org/docs/error-boundaries.html
 //
-// error boundaries are one of the few things that hooks cannot do;
+// error boundaries are (currently?) one of the few things that hooks cannot do;
 // we cannot do error boundaries without doing classes.
 //
 // if we're working with an API, some of these responses could potentially have errors inside of them.
@@ -17,6 +17,11 @@ class ErrorBoundary extends Component {
     redirect: false
   };
 
+  /**
+   * naming convention: this is one of the react lifecycle methods.
+   * it gets called whenever there is an error inside of it.
+   * static, so it gets called on the class, not on the instance.
+   */
   static getDerivedStateFromError() {
     return {
       hasError: true
