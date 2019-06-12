@@ -16,11 +16,11 @@ import { createContext } from "react";
 const ThemeContext = createContext(
   [
     {
-      buttonColor: "green",
-      modalColor: "green"
+      buttonColor: "peru",
+      modalColor: "peru"
     }
   ],
-  () => {}
+  () => 0
 );
 
 export default ThemeContext;
