@@ -9,11 +9,12 @@
 // so error boundaries will allow us to capture some of these errors without crashing our application.
 
 import React, { Component } from "react";
-import { Link } from "@reach/router";
+import { Link, Redirect } from "@reach/router";
 
 class ErrorBoundary extends Component {
   state = {
-    hasError: false
+    hasError: false,
+    redirect: false
   };
 
   static getDerivedStateFromError() {
@@ -30,19 +31,30 @@ class ErrorBoundary extends Component {
     console.error("ErrorBoundary caught an error:", error, errorInfo);
   }
 
-  render() {
+  componentDidUpdate() {
     if (this.state.hasError) {
-      return (
-        <h1>
-          There was an error with this listing.
-          <Link to="/">Click here</Link> to go back to the home page or wait
-          five seconds.
-        </h1>
-      );
+      setTimeout(() => this.setState({ redirect: true }), 5000);
+    }
+  }
+
+  render() {
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
     } else {
-      // otherwise pass through all the components that are coming through.
-      // this.props.children is going to be everything that is inside of this component
-      return this.props.children;
+      if (this.state.hasError) {
+        return (
+          <h1>
+            There was an error with this listing.
+            <br />
+            <Link to="/">Click here</Link> to go back to the home page or wait
+            five seconds.
+          </h1>
+        );
+      } else {
+        // otherwise pass through all the components that are coming through.
+        // this.props.children is going to be everything that is inside of this component
+        return this.props.children;
+      }
     }
   }
 }
