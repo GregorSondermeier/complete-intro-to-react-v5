@@ -1,5 +1,7 @@
 import React from "react";
+import { navigate } from "@reach/router";
 import pet from "@frontendmasters/pet";
+import Modal from "./Modal";
 import Carousel from "./Carousel";
 import DebugJson from "./DebugJson";
 import ErrorBoundary from "./ErrorBoundary";
@@ -12,7 +14,8 @@ class Details extends React.Component {
   // experimental feature:
   // public class properties (proposed for ES2019)
   state = {
-    loading: true
+    loading: true,
+    showModal: false
   };
 
   constructor(props) {
@@ -29,6 +32,7 @@ class Details extends React.Component {
     pet.animal(this.props.id).then(({ animal }) => {
       // shallow merge: setState() basically does Object.assign (oldState, newState)
       this.setState({
+        url: animal.url,
         name: animal.name,
         animal: animal.type,
         location: `${animal.contact.address.city}, ${animal.contact.address.state}`,
@@ -39,6 +43,10 @@ class Details extends React.Component {
       });
     }, console.error);
   }
+
+  toggleModal = () => this.setState({ showModal: !this.state.showModal });
+
+  adopt = () => navigate(this.state.url);
 
   render() {
     if (this.state.loading) {
@@ -51,24 +59,49 @@ class Details extends React.Component {
         </div>
       );
     } else {
-      const { animal, breed, location, description, name, media } = this.state;
+      const {
+        animal,
+        breed,
+        location,
+        description,
+        name,
+        media,
+        showModal
+      } = this.state;
 
       return (
         <div className="details">
           <Carousel media={media} />
 
-          <div>
+          {/* eslint-disable-next-line */}
+          <div onClick={e => console.log("it still logs!", e)}>
             <h1>{name}</h1>
             <h2>{`${animal} - ${breed} - ${location}`}</h2>
             {/* Context is weirder to use in class components */}
             <ThemeContext.Consumer>
               {([theme]) => (
-                <button style={{ backgroundColor: theme.buttonColor }}>
+                <button
+                  onClick={this.toggleModal}
+                  style={{ backgroundColor: theme.buttonColor }}
+                >
                   Adopt {name}
                 </button>
               )}
             </ThemeContext.Consumer>
             <p>{description}</p>
+            {showModal ? (
+              <Modal>
+                <div>
+                  <h1>Would you like to adopt {name}?</h1>
+                  <div className="buttons">
+                    <button onClick={this.adopt}>Yes</button>
+                    <button onClick={this.toggleModal}>
+                      No, I am a monster
+                    </button>
+                  </div>
+                </div>
+              </Modal>
+            ) : null}
           </div>
 
           <DebugJson title="props" obj={this.props} />
