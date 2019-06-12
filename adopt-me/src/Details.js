@@ -2,6 +2,7 @@ import React from "react";
 import pet from "@frontendmasters/pet";
 import Carousel from "./Carousel";
 import DebugJson from "./DebugJson";
+import ErrorBoundary from "./ErrorBoundary";
 
 // on class components, there is one hard requirement: to implement the render() method.
 // also we can't use hooks (i.e. useState()) with class components (yet?),
@@ -70,4 +71,12 @@ class Details extends React.Component {
   }
 }
 
-export default Details;
+// wrap the Details component in an Error Boundary.
+// use the Array spread syntax to avoid this.props.props inside the Details component.
+export default function DetailsWithErrorBoundary(props) {
+  return (
+    <ErrorBoundary>
+      <Details {...props} />
+    </ErrorBoundary>
+  );
+}
