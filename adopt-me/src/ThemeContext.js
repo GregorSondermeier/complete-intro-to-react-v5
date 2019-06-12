@@ -13,6 +13,14 @@ import { createContext } from "react";
 // stick a hook inside here.
 // the empty arrow function is actually just a placeholder. The app will use this function if it has no provider above
 // it, but this should never happen.
-const ThemeContext = createContext(["green"], () => {});
+const ThemeContext = createContext(
+  [
+    {
+      buttonColor: "green",
+      modalColor: "green"
+    }
+  ],
+  () => {}
+);
 
 export default ThemeContext;
