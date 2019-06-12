@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import pet, { ANIMALS } from "@frontendmasters/pet";
 import Results from "./Results";
 import useDropdown from "./useDropdown";
+import ThemeContext from "./ThemeContext";
 
 // first, all the consts will be set
 // second, the effect that calls the API will be scheduled after the render
@@ -18,6 +19,7 @@ const SearchParams = () => {
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
   const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
   const [pets, setPets] = useState([]);
+  const [theme, setTheme] = useContext(ThemeContext);
 
   async function requestPets() {
     const { animals } = await pet.animals({
@@ -65,7 +67,22 @@ const SearchParams = () => {
         </label>
         <AnimalDropdown />
         <BreedDropdown />
-        <button>Submit</button>
+        <label htmlFor="theme">
+          Theme
+          <select
+            name="theme"
+            id="theme"
+            value={theme.buttonColor}
+            onChange={e => setTheme({ buttonColor: e.target.value })}
+            onBlur={e => setTheme({ buttonColor: e.target.value })}
+          >
+            <option value="peru">Peru</option>
+            <option value="darkblue">Dark Blue</option>
+            <option value="mediumorchid">Medium Orchid</option>
+            <option value="chartreuse">Chartreuse</option>
+          </select>
+        </label>
+        <button style={{ backgroundColor: theme.buttonColor }}>Submit</button>
       </form>
       <Results pets={pets} />
     </div>

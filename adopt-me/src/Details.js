@@ -3,6 +3,7 @@ import pet from "@frontendmasters/pet";
 import Carousel from "./Carousel";
 import DebugJson from "./DebugJson";
 import ErrorBoundary from "./ErrorBoundary";
+import ThemeContext from "./ThemeContext";
 
 // on class components, there is one hard requirement: to implement the render() method.
 // also we can't use hooks (i.e. useState()) with class components (yet?),
@@ -59,7 +60,14 @@ class Details extends React.Component {
           <div>
             <h1>{name}</h1>
             <h2>{`${animal} - ${breed} - ${location}`}</h2>
-            <button>Adopt {name}</button>
+            {/* Context is weirder to use in class components */}
+            <ThemeContext.Consumer>
+              {([theme]) => (
+                <button style={{ backgroundColor: theme.buttonColor }}>
+                  Adopt {name}
+                </button>
+              )}
+            </ThemeContext.Consumer>
             <p>{description}</p>
           </div>
 
